@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "v1",
+        "title": "Messente SMS API",
+        "description": " Sending SMS text messages",
+        "termsOfService": "https:\/\/messente.com\/pages\/terms"
+    },
+    "servers": [
+        "httpapi2.messente.com\/"
+    ],
+    "paths": {
+        "send_sms\/": {
+            "get": {
+                "summary": "Send SMS",
+                "description": " Sending SMS text messages",
+                "operationId": "SendSMS",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "autoconvert",
+                        "in": "query",
+                        "description": "ontuse replacement settings from accounts API Auto Replace settings page fulltall non GSM 03.38 characters will be replaced with suitable alternatives. offtmessage content is not modified in any way."
+                    },
+                    {
+                        "name": "charset",
+                        "in": "query",
+                        "description": "Encoding of the text and from parameter value. Defaults to UTF-8"
+                    },
+                    {
+                        "name": "dlr-url",
+                        "in": "query",
+                        "description": "URL where automatic Delivery Request is made."
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Optional parameter that sets Sender. When not set, default Sender is used. Sender must be encoded in UTF-8"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "API account security key (API key) from the Messentes web page"
+                    },
+                    {
+                        "name": "text",
+                        "in": "query",
+                        "description": "All characters (Unicode) and long messages are supported"
+                    },
+                    {
+                        "name": "time_to_send",
+                        "in": "query",
+                        "description": "Optional parameter for sending message at some specific time in the future. Must be numeric Unix timestamp i.e. 1415253378. If time_to_send is set in past, message will be sent with no delays."
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "Receivers phone number with country code"
+                    },
+                    {
+                        "name": "udh",
+                        "in": "query",
+                        "description": "SMS User Data Header"
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "API account user name from the Messentes web page"
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": []
+    }
+}
