@@ -1,0 +1,147 @@
+{
+    "name": "Messente",
+    "description": "Simple, powerful, and transparent. That's how we do business. Start messaging your clients and verifying users now. No commitments, contracts, or sign-up fees.     http:\/\/messente.com\/contact    We're a forward-thinking team. Our purpose is to connect ...",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1817-messente.jpg",
+    "tags": [
+        "api provider",
+        "have api",
+        "messages",
+        "networks",
+        "relative data",
+        "service api",
+        "target"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/messente\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Messente SMS API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1817-messente.jpg",
+            "humanURL": "http:\/\/messente.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/messente-sms-api.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/messente-sms-api-openapi.json"
+                }
+            ]
+        },
+        {
+            "name": "Messente",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1817-messente.jpg",
+            "humanURL": "http:\/\/messente.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/messente.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/messente-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "http:\/\/api2.messente.com"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/messente.com\/blog\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/messente.com\/blog\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/messente-communications"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/messente.com\/pages\/api\/"
+        },
+        {
+            "type": "Email",
+            "url": "support@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "lauri.kinkar@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "marcis.jurisons@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "jaanus.roomus@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "joosep.pintsaar@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "margus.sytt@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "marcus.kallavus@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "kaur.virunurm@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "uku.tomikas@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "raili.liiva@messente.com"
+        },
+        {
+            "type": "Email",
+            "url": "yuriy.mikitchenko@messente.com"
+        },
+        {
+            "type": "FAQ",
+            "url": "https:\/\/messente.com\/pages\/faq"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/messente.com\/pricing\/full"
+        },
+        {
+            "type": "Terms of Service",
+            "url": "https:\/\/messente.com\/pages\/terms"
+        },
+        {
+            "type": "Twitter",
+            "url": "http:\/\/www.twitter.com\/messente"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/messente.com"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/messente.com"
+        }
+    ]
+}
