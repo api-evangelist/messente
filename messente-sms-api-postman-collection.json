@@ -1,0 +1,107 @@
+{
+    "id": "21ddc32079e085f66636e74bf2542d8c",
+    "name": "Messente SMS API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "a3ce928b028f84df59d61736a70c495d",
+            "name": "Send SMS",
+            "url": "httpapi2.messente.com\/send_sms\/",
+            "description": " Sending SMS text messages",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "autoconvert",
+                    "description": "ontuse replacement settings from accounts API Auto Replace settings page fulltall non GSM 03.38 characters will be replaced with suitable alternatives. offtmessage content is not modified in any way.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "charset",
+                    "description": "Encoding of the text and from parameter value. Defaults to UTF-8",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "dlr-url",
+                    "description": "URL where automatic Delivery Request is made.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "from",
+                    "description": "Optional parameter that sets Sender. When not set, default Sender is used. Sender must be encoded in UTF-8",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "password",
+                    "description": "API account security key (API key) from the Messentes web page",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "text",
+                    "description": "All characters (Unicode) and long messages are supported",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "time_to_send",
+                    "description": "Optional parameter for sending message at some specific time in the future. Must be numeric Unix timestamp i.e. 1415253378. If time_to_send is set in past, message will be sent with no delays.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "to",
+                    "description": "Receivers phone number with country code",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "udh",
+                    "description": "SMS User Data Header",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "username",
+                    "description": "API account user name from the Messentes web page",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "21ddc32079e085f66636e74bf2542d8c",
+            "rawModeData": ""
+        }
+    ]
+}
