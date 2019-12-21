@@ -1,5 +1,5 @@
 {
-    "id": "21ddc32079e085f66636e74bf2542d8c",
+    "id": "81b5d601f61ca085c607bd60e49b38da",
     "name": "Messente SMS API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "a3ce928b028f84df59d61736a70c495d",
+            "id": "23f8a8131f1661af0f54f8f2327b7473",
             "name": "Send SMS",
             "url": "httpapi2.messente.com\/send_sms\/",
             "description": " Sending SMS text messages",
@@ -100,7 +100,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "21ddc32079e085f66636e74bf2542d8c",
+            "collectionId": "81b5d601f61ca085c607bd60e49b38da",
             "rawModeData": ""
         }
     ]
