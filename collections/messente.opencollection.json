@@ -1,0 +1,572 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{apiUsername}}",
+      "password": "{{apiPassword}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Omnimessage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends an Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/omnimessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an Omnimessage across SMS, Viber, WhatsApp, and Telegram as an ordered fallback chain."
+        },
+        {
+          "info": {
+            "name": "Cancels a scheduled Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/omnimessage/:omnimessageId",
+            "params": [
+              {
+                "name": "omnimessageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the Omnimessage to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a scheduled Omnimessage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bulk Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends a bulk Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/omnimessages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an Omnimessage to multiple recipients in a single request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Delivery Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the delivery report for an Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/omnimessage/:omnimessageId/status",
+            "params": [
+              {
+                "name": "omnimessageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the Omnimessage."
+              }
+            ]
+          },
+          "docs": "Retrieves the delivery report for an Omnimessage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/contacts"
+          },
+          "docs": "Returns all contacts."
+        },
+        {
+          "info": {
+            "name": "Creates a new contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new contact."
+        },
+        {
+          "info": {
+            "name": "Lists a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "Phone number in E.164 format."
+              }
+            ]
+          },
+          "docs": "Lists a specific contact."
+        },
+        {
+          "info": {
+            "name": "Updates a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "Phone number in E.164 format."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact."
+        },
+        {
+          "info": {
+            "name": "Deletes a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "Phone number in E.164 format."
+              }
+            ]
+          },
+          "docs": "Deletes a contact."
+        },
+        {
+          "info": {
+            "name": "Lists a contact's group memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone/groups",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "Phone number in E.164 format."
+              }
+            ]
+          },
+          "docs": "Lists the groups a contact belongs to."
+        },
+        {
+          "info": {
+            "name": "Adds a contact to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId/contacts/:phone",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Adds a contact to a group."
+        },
+        {
+          "info": {
+            "name": "Removes a contact from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId/contacts/:phone",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a contact from a group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/groups"
+          },
+          "docs": "Returns all groups."
+        },
+        {
+          "info": {
+            "name": "Creates a new group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new group."
+        },
+        {
+          "info": {
+            "name": "Lists a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists a specific group."
+        },
+        {
+          "info": {
+            "name": "Updates a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a group."
+        },
+        {
+          "info": {
+            "name": "Deletes a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Blacklist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all blacklisted numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/blacklist"
+          },
+          "docs": "Returns all blacklisted phone numbers."
+        },
+        {
+          "info": {
+            "name": "Adds a number to the blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/blacklist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a phone number to the blacklist."
+        },
+        {
+          "info": {
+            "name": "Checks if a number is blacklisted",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/blacklist/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Checks if a phone number is blacklisted."
+        },
+        {
+          "info": {
+            "name": "Removes a number from the blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/blacklist/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a phone number from the blacklist."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Number Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Requests phone number information (HLR)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/hlr/sync",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a synchronous HLR lookup returning network, roaming, and portability info."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Number Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiates phone number verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/verify/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a PIN code to a phone number to begin verification."
+        },
+        {
+          "info": {
+            "name": "Verifies a PIN code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/verify/pin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checks a PIN entered by the user against a verification session."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Requests statistics reports by country",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/statistics/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests messaging statistics reports by country and network over a date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the account pricelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/pricelist"
+          },
+          "docs": "Retrieves the account pricelist."
+        },
+        {
+          "info": {
+            "name": "Gets prices for a specific country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/prices",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter ISO 3166-1 alpha-2 country code."
+              }
+            ]
+          },
+          "docs": "Gets pricing for a specific country."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Balance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/get_balance"
+          },
+          "docs": "Retrieves the current account balance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

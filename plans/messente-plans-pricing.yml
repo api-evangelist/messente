@@ -1,0 +1,127 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Messente
+providerId: messente
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- CPaaS
+- Messaging
+- SMS
+- Viber
+- WhatsApp
+- Verification
+- Plans
+description: >-
+  Messente uses a transparent pay-as-you-go pricing model with no monthly
+  minimum, no setup fee, and no subscription. Messaging is priced per message
+  and varies by destination country and network (MCC/MNC) and by channel (SMS,
+  Viber, WhatsApp). WhatsApp additionally follows Meta's per-conversation
+  category pricing. Number lookup (HLR) and number verification (2FA) are priced
+  per lookup / per verification. Prepaid account credit is drawn down as usage
+  occurs, and the live pricelist is available programmatically via the Pricing
+  API. Volume and enterprise pricing is negotiated with Messente sales.
+notes: >-
+  Per-country and per-network rates are not fixed and are best pulled live from
+  the Pricing API (GET /pricelist and GET /prices) or the Messente dashboard;
+  verify current rates on the Messente pricing page during reconciliation.
+sources:
+- https://messente.com/pricing
+- https://messente.com/documentation/pricing-api
+- https://messente.com/documentation
+plans:
+- id: messente-pay-as-you-go
+  name: Pay-as-you-go
+  type: usage
+  description: >-
+    Prepaid, per-message metered usage across all Messente channels with no
+    monthly minimum or subscription. Rates depend on destination country,
+    network, and channel.
+  entries:
+  - label: SMS
+    name: sms
+    type: usage
+    metric: messages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-message, varies by destination country and network
+    userMultiplied: false
+  - label: Viber
+    name: viber
+    type: usage
+    metric: messages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-message, varies by destination country and network
+    userMultiplied: false
+  - label: WhatsApp
+    name: whatsapp
+    type: usage
+    metric: conversations
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-conversation, Meta category pricing plus Messente markup
+    userMultiplied: false
+  - label: Number Lookup (HLR)
+    name: number_lookup
+    type: usage
+    metric: lookups
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-lookup, varies by destination country
+    userMultiplied: false
+  - label: Number Verification (2FA)
+    name: number_verification
+    type: usage
+    metric: verifications
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-verification (PIN delivery billed as a message)
+    userMultiplied: false
+  elements:
+  - name: Omnimessage
+  - name: SMS
+  - name: Viber
+  - name: WhatsApp
+  - name: Contacts / Phonebook
+  - name: Groups
+  - name: Number Lookup
+  - name: Number Verification
+  - name: Statistics
+  - name: Delivery Reports
+- id: messente-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, dedicated routes, custom sender IDs, and negotiated
+    per-message rates with dedicated support. Contact Messente sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Volume Pricing
+  - name: Dedicated Support
+  - name: Custom Routing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

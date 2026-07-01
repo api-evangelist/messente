@@ -1,0 +1,97 @@
+aid: messente
+name: Messente
+review:
+  question: Does Messente expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Messente's asynchronous surface is delivery reports pushed to a
+    customer-configured HTTP callback (webhook) URL and inbound (MO)
+    message webhooks, not a broker- or stream-based eventing transport.
+    Under the current API Evangelist scope, plain outbound HTTP webhooks
+    without an SSE stream or WebSocket channel were not modeled as an
+    AsyncAPI document; the delivery report pull endpoint is captured in the
+    OpenAPI instead. No AsyncAPI document was authored.
+findings:
+  summary: |
+    Messente does not publish a documented public WebSocket API. The public
+    product is a synchronous HTTPS REST API under
+    https://api.messente.com/v1 authenticated with HTTP Basic (API username
+    and password from the dashboard). The Omnichannel (Omnimessage),
+    Phonebook (Contacts/Groups/Blacklist), Number Lookup (HLR), Number
+    Verification, Statistics, Pricing, and Account Balance surfaces are all
+    request/response REST. Asynchronous delivery status is handled either by
+    polling GET /omnimessage/{omnimessageId}/status or by Messente POSTing
+    delivery reports and inbound messages to a customer-configured callback
+    (webhook) URL. Messente also operates an SMPP gateway for high-volume
+    binary messaging, which is a separate protocol from HTTP and not a
+    WebSocket surface.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.messente.com/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Outbound HTTP callbacks for delivery reports and inbound (MO) messages to a customer-configured URL. Not WebSocket.
+      documented: true
+    - protocol: SMPP
+      scheme: smpp
+      note: Separate high-volume binary messaging gateway protocol, not part of the REST API and not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Messente's API reference for messaging, verification, lookup, or any other product as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.messente.com/v1/omnimessage
+    - DELETE https://api.messente.com/v1/omnimessage/{omnimessageId}
+    - GET    https://api.messente.com/v1/omnimessage/{omnimessageId}/status
+    - POST   https://api.messente.com/v1/omnimessages
+    - GET    https://api.messente.com/v1/phonebook/contacts
+    - POST   https://api.messente.com/v1/phonebook/contacts
+    - GET    https://api.messente.com/v1/phonebook/contacts/{phone}
+    - PATCH  https://api.messente.com/v1/phonebook/contacts/{phone}
+    - DELETE https://api.messente.com/v1/phonebook/contacts/{phone}
+    - GET    https://api.messente.com/v1/phonebook/contacts/{phone}/groups
+    - POST   https://api.messente.com/v1/phonebook/groups/{groupId}/contacts/{phone}
+    - DELETE https://api.messente.com/v1/phonebook/groups/{groupId}/contacts/{phone}
+    - GET    https://api.messente.com/v1/phonebook/groups
+    - POST   https://api.messente.com/v1/phonebook/groups
+    - GET    https://api.messente.com/v1/phonebook/groups/{groupId}
+    - PUT    https://api.messente.com/v1/phonebook/groups/{groupId}
+    - DELETE https://api.messente.com/v1/phonebook/groups/{groupId}
+    - GET    https://api.messente.com/v1/phonebook/blacklist
+    - POST   https://api.messente.com/v1/phonebook/blacklist
+    - GET    https://api.messente.com/v1/phonebook/blacklist/{phone}
+    - DELETE https://api.messente.com/v1/phonebook/blacklist/{phone}
+    - POST   https://api.messente.com/v1/hlr/sync
+    - POST   https://api.messente.com/v1/verify/start
+    - POST   https://api.messente.com/v1/verify/pin
+    - POST   https://api.messente.com/v1/statistics/reports
+    - GET    https://api.messente.com/v1/pricelist
+    - GET    https://api.messente.com/v1/prices
+    - GET    https://api.messente.com/v1/get_balance
+sources:
+  - url: https://messente.com/documentation
+    type: Documentation
+    note: Documentation hub; all listed APIs are HTTPS REST with HTTP Basic auth.
+  - url: https://messente.com/documentation/omnichannel-api
+    type: Documentation
+    note: Omnimessage send/cancel and delivery report retrieval are REST; async status via callback webhook.
+  - url: https://github.com/messente/messente-api-python
+    type: SourceCode
+    note: Official OpenAPI-generated SDK; base URL https://api.messente.com/v1, HTTP Basic auth, API version 2.1.0. Confirms all REST paths above.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Messente's asynchronous surface is
+    outbound HTTP callback webhooks (delivery reports, inbound messages),
+    which under current scope are not modeled as AsyncAPI. The REST surface
+    is captured in openapi/messente-openapi.yml and reflected in apis.yml.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

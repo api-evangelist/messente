@@ -1,0 +1,109 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Messente
+providerId: messente
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- CPaaS
+- Messaging
+- SMS
+- Viber
+- WhatsApp
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Messente spend. Messente bills prepaid, usage-based per-message
+  rates that vary by destination country, network (MCC/MNC), and channel (SMS,
+  Viber, WhatsApp). WhatsApp follows Meta per-conversation category pricing.
+  Number Lookup (HLR) and Number Verification (2FA) are billed per lookup / per
+  verification. Account credit is drawn down as usage occurs and live rates are
+  available via the Pricing API.
+notes: >-
+  Per-country and per-network rates change frequently; pull live rates from the
+  Pricing API (GET /pricelist, GET /prices) and reconcile spend against the
+  Statistics API and account balance during reconciliation.
+sources:
+- https://messente.com/pricing
+- https://messente.com/documentation/pricing-api
+- https://messente.com/documentation/statistics-api
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Messente
+serviceCategory: Communication and Messaging
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Prepaid
+  billingCurrency: EUR
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Messente Omnichannel Messaging
+  ServiceCategory: Communication and Messaging
+  ProviderName: Messente
+  PublisherName: Messente
+  InvoiceIssuerName: Messente
+  BillingCurrency: EUR
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: sms_messages
+  description: SMS messages sent, billed per message by destination country and network.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - network
+- name: viber_messages
+  description: Viber messages sent, billed per message by destination country and network.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - network
+- name: whatsapp_conversations
+  description: WhatsApp conversations, billed per conversation per Meta category plus markup.
+  unit: conversations
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - category
+- name: number_lookups
+  description: HLR number lookups, billed per lookup by destination country.
+  unit: lookups
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+- name: number_verifications
+  description: PIN-based number verifications (2FA), billed per verification.
+  unit: verifications
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+principles:
+- name: Visibility
+  description: Pull the Statistics API and account balance to inspect per-country, per-network, and per-channel send volume and cost.
+- name: Allocation
+  description: Tag API credentials and sender IDs per workload/team; map to internal cost centers.
+- name: Optimization
+  description: Order the Omnimessage fallback chain to prefer lower-cost channels first; use HLR lookup to drop invalid numbers before sending; blacklist to avoid wasted sends.
+- name: Accountability
+  description: Assign owners per project/credential; review prepaid credit burn and per-country spend against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

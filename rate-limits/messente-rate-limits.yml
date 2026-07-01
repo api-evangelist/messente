@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Messente
+providerId: messente
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- CPaaS
+- Messaging
+- SMS
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Messente applies fair-use throttling to its REST API to protect delivery
+  quality and downstream carriers. Sustained request throughput and messaging
+  send rate (messages per second) are governed per account and can be raised for
+  high-volume senders on request. Bulk sending is designed to be submitted via
+  the bulk Omnimessage endpoint rather than many concurrent single-message
+  calls. Specific numeric limits are not published as fixed public values and
+  are set per account.
+notes: >-
+  Confirm current per-account throughput and messaging throughput limits with
+  Messente support or in the dashboard during reconciliation; high-volume send
+  rates are negotiated. Honor HTTP 429 responses with backoff.
+sources:
+- https://messente.com/documentation
+- https://messente.com/documentation/omnichannel-api
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Fair-use request throughput per account across all endpoints.
+- name: Messaging Throughput
+  scope: account
+  metric: messages_per_second
+  limit: see provider documentation
+  notes: Send rate per account; raised for high-volume senders on request.
+- name: Bulk Omnimessage
+  scope: account
+  metric: recipients
+  limit: submit large sends via POST /omnimessages
+  notes: Use the bulk endpoint for many recipients instead of concurrent single sends.
+policies:
+- name: Fair Use
+  description: Throughput is governed per account to protect delivery quality and carrier relationships.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on HTTP 429 responses.
+- name: High-Volume Onboarding
+  description: Contact Messente to raise send-rate limits and provision dedicated routes for high-volume traffic.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

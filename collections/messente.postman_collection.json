@@ -1,0 +1,309 @@
+{
+  "info": {
+    "name": "Messente API",
+    "description": "Messente CPaaS REST API (v2.1.0). Omnimessage (SMS/Viber/WhatsApp/Telegram fallback chain), Phonebook contacts and groups, blacklist, HLR number lookup, PIN-based number verification, statistics, pricing, and account balance. Base URL https://api.messente.com/v1, HTTP Basic authentication using the API username and password from the Messente dashboard.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "{{apiUsername}}", "type": "string" },
+      { "key": "password", "value": "{{apiPassword}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.messente.com/v1" }
+  ],
+  "item": [
+    {
+      "name": "Omnimessage",
+      "item": [
+        {
+          "name": "Sends an Omnimessage",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/omnimessage", "host": ["{{baseUrl}}"], "path": ["omnimessage"] },
+            "body": { "mode": "raw", "raw": "{\n  \"to\": \"+37251000000\",\n  \"messages\": [\n    { \"channel\": \"whatsapp\", \"sender\": \"MyBrand\", \"text\": { \"body\": \"Hello via WhatsApp\" } },\n    { \"channel\": \"viber\", \"sender\": \"MyBrand\", \"text\": \"Hello via Viber\" },\n    { \"channel\": \"sms\", \"sender\": \"MyBrand\", \"text\": \"Hello via SMS\" }\n  ]\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Cancels a scheduled Omnimessage",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/omnimessage/:omnimessageId", "host": ["{{baseUrl}}"], "path": ["omnimessage", ":omnimessageId"], "variable": [{ "key": "omnimessageId", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bulk Messaging",
+      "item": [
+        {
+          "name": "Sends a bulk Omnimessage",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/omnimessages", "host": ["{{baseUrl}}"], "path": ["omnimessages"] },
+            "body": { "mode": "raw", "raw": "{\n  \"messages\": []\n}", "options": { "raw": { "language": "json" } } }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delivery Report",
+      "item": [
+        {
+          "name": "Retrieves the delivery report for an Omnimessage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/omnimessage/:omnimessageId/status", "host": ["{{baseUrl}}"], "path": ["omnimessage", ":omnimessageId", "status"], "variable": [{ "key": "omnimessageId", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Returns all contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/contacts", "host": ["{{baseUrl}}"], "path": ["phonebook", "contacts"] }
+          }
+        },
+        {
+          "name": "Creates a new contact",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/phonebook/contacts", "host": ["{{baseUrl}}"], "path": ["phonebook", "contacts"] },
+            "body": { "mode": "raw", "raw": "{\n  \"phoneNumber\": \"+37251000000\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Lists a contact",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/contacts/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "contacts", ":phone"], "variable": [{ "key": "phone", "value": "" }] }
+          }
+        },
+        {
+          "name": "Updates a contact",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/phonebook/contacts/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "contacts", ":phone"], "variable": [{ "key": "phone", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"Jane\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Deletes a contact",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/contacts/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "contacts", ":phone"], "variable": [{ "key": "phone", "value": "" }] }
+          }
+        },
+        {
+          "name": "Lists a contact's group memberships",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/contacts/:phone/groups", "host": ["{{baseUrl}}"], "path": ["phonebook", "contacts", ":phone", "groups"], "variable": [{ "key": "phone", "value": "" }] }
+          }
+        },
+        {
+          "name": "Adds a contact to a group",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups/:groupId/contacts/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups", ":groupId", "contacts", ":phone"], "variable": [{ "key": "groupId", "value": "" }, { "key": "phone", "value": "" }] }
+          }
+        },
+        {
+          "name": "Removes a contact from a group",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups/:groupId/contacts/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups", ":groupId", "contacts", ":phone"], "variable": [{ "key": "groupId", "value": "" }, { "key": "phone", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Groups",
+      "item": [
+        {
+          "name": "Returns all groups",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups"] }
+          }
+        },
+        {
+          "name": "Creates a new group",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups"] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Customers\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Lists a group",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups/:groupId", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups", ":groupId"], "variable": [{ "key": "groupId", "value": "" }] }
+          }
+        },
+        {
+          "name": "Updates a group",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups/:groupId", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups", ":groupId"], "variable": [{ "key": "groupId", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"VIP Customers\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Deletes a group",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/groups/:groupId", "host": ["{{baseUrl}}"], "path": ["phonebook", "groups", ":groupId"], "variable": [{ "key": "groupId", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blacklist",
+      "item": [
+        {
+          "name": "Returns all blacklisted numbers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/blacklist", "host": ["{{baseUrl}}"], "path": ["phonebook", "blacklist"] }
+          }
+        },
+        {
+          "name": "Adds a number to the blacklist",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/phonebook/blacklist", "host": ["{{baseUrl}}"], "path": ["phonebook", "blacklist"] },
+            "body": { "mode": "raw", "raw": "{\n  \"phoneNumber\": \"+37251000000\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Checks if a number is blacklisted",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/blacklist/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "blacklist", ":phone"], "variable": [{ "key": "phone", "value": "" }] }
+          }
+        },
+        {
+          "name": "Removes a number from the blacklist",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonebook/blacklist/:phone", "host": ["{{baseUrl}}"], "path": ["phonebook", "blacklist", ":phone"], "variable": [{ "key": "phone", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Number Lookup",
+      "item": [
+        {
+          "name": "Requests phone number information (HLR)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/hlr/sync", "host": ["{{baseUrl}}"], "path": ["hlr", "sync"] },
+            "body": { "mode": "raw", "raw": "{\n  \"numbers\": [\"+37251000000\"]\n}", "options": { "raw": { "language": "json" } } }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Number Verification",
+      "item": [
+        {
+          "name": "Initiates phone number verification",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/verify/start", "host": ["{{baseUrl}}"], "path": ["verify", "start"] },
+            "body": { "mode": "raw", "raw": "{\n  \"to\": \"+37251000000\",\n  \"messages\": [{ \"channel\": \"sms\", \"sender\": \"MyBrand\", \"text\": \"Your PIN is <pin>\" }]\n}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Verifies a PIN code",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/verify/pin", "host": ["{{baseUrl}}"], "path": ["verify", "pin"] },
+            "body": { "mode": "raw", "raw": "{\n  \"verificationId\": \"\",\n  \"pin\": \"\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Statistics",
+      "item": [
+        {
+          "name": "Requests statistics reports by country",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/statistics/reports", "host": ["{{baseUrl}}"], "path": ["statistics", "reports"] },
+            "body": { "mode": "raw", "raw": "{\n  \"startDate\": \"2026-06-01\",\n  \"endDate\": \"2026-06-30\"\n}", "options": { "raw": { "language": "json" } } }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing",
+      "item": [
+        {
+          "name": "Retrieves the account pricelist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/pricelist", "host": ["{{baseUrl}}"], "path": ["pricelist"] }
+          }
+        },
+        {
+          "name": "Gets prices for a specific country",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/prices?country=EE", "host": ["{{baseUrl}}"], "path": ["prices"], "query": [{ "key": "country", "value": "EE" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Account Balance",
+      "item": [
+        {
+          "name": "Retrieves the account balance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/get_balance", "host": ["{{baseUrl}}"], "path": ["get_balance"] }
+          }
+        }
+      ]
+    }
+  ]
+}
