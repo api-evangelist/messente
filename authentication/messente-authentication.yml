@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/messente-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using the API username and password from the Messente
+    dashboard API settings.
+  sources:
+  - openapi/messente-openapi.yml
