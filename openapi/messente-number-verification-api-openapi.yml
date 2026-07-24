@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance Number Verification API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Number Verification
+  description: PIN-based phone number verification (2FA / one-time passwords).
+paths:
+  /verify/start:
+    post:
+      tags:
+      - Number Verification
+      summary: Initiates phone number verification
+      description: Sends a PIN code to a phone number to begin verification.
+      operationId: verifyNumber
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Omnimessage'
+      responses:
+        '200':
+          description: Verification initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OmniMessageCreateSuccessResponse'
+  /verify/pin:
+    post:
+      tags:
+      - Number Verification
+      summary: Verifies a PIN code
+      description: Checks a PIN entered by the user against a verification session.
+      operationId: verifyPin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verificationId:
+                  type: string
+                  format: uuid
+                pin:
+                  type: string
+      responses:
+        '200':
+          description: PIN verified
+        '400':
+          description: Invalid or expired PIN
+components:
+  schemas:
+    WhatsApp:
+      type: object
+      description: A WhatsApp channel message.
+      properties:
+        channel:
+          type: string
+          enum:
+          - whatsapp
+          default: whatsapp
+        sender:
+          type: string
+        text:
+          $ref: '#/components/schemas/WhatsAppText'
+    SMS:
+      type: object
+      description: An SMS channel message.
+      required:
+      - text
+      properties:
+        channel:
+          type: string
+          enum:
+          - sms
+          default: sms
+        sender:
+          type: string
+          description: Sender ID.
+        text:
+          type: string
+        validity:
+          type: integer
+          description: Message validity period in minutes.
+        autoconvert:
+          type: string
+          enum:
+          - full
+          - 'on'
+          - 'off'
+    WhatsAppText:
+      type: object
+      properties:
+        body:
+          type: string
+        preview_url:
+          type: boolean
+    Viber:
+      type: object
+      description: A Viber channel message.
+      required:
+      - text
+      properties:
+        channel:
+          type: string
+          enum:
+          - viber
+          default: viber
+        sender:
+          type: string
+        text:
+          type: string
+        image_url:
+          type: string
+        button_url:
+          type: string
+        button_text:
+          type: string
+        validity:
+          type: integer
+    Omnimessage:
+      type: object
+      description: A message delivered over one or more channels. The messages array defines the fallback chain in priority order.
+      required:
+      - to
+      - messages
+      properties:
+        to:
+          type: string
+          description: Recipient phone number in international E.164 format.
+        messages:
+          type: array
+          description: Ordered list of channel-specific messages forming the fallback chain.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/SMS'
+            - $ref: '#/components/schemas/Viber'
+            - $ref: '#/components/schemas/WhatsApp'
+        text_store:
+          type: string
+          enum:
+          - nostore
+          - plaintext
+          - sha256
+    OmniMessageCreateSuccessResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              channel:
+                type: string
+              message_id:
+                type: string
+              sender:
+                type: string
+        to:
+          type: string
+        omnimessage:
+          type: string
+          format: uuid
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.

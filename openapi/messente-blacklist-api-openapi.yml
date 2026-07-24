@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance Blacklist API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Blacklist
+  description: Manage the phone number blacklist.
+paths:
+  /phonebook/blacklist:
+    get:
+      tags:
+      - Blacklist
+      summary: Returns all blacklisted phone numbers
+      operationId: fetchBlacklist
+      responses:
+        '200':
+          description: The blacklist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchBlacklistSuccess'
+    post:
+      tags:
+      - Blacklist
+      summary: Adds a phone number to the blacklist
+      operationId: addToBlacklist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumberToBlacklist'
+      responses:
+        '201':
+          description: Number added to blacklist
+  /phonebook/blacklist/{phone}:
+    get:
+      tags:
+      - Blacklist
+      summary: Checks if a phone number is blacklisted
+      operationId: isBlacklisted
+      parameters:
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '204':
+          description: Number is blacklisted
+        '404':
+          description: Number is not blacklisted
+    delete:
+      tags:
+      - Blacklist
+      summary: Removes a phone number from the blacklist
+      operationId: deleteFromBlacklist
+      parameters:
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '204':
+          description: Number removed from blacklist
+components:
+  schemas:
+    NumberToBlacklist:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+    FetchBlacklistSuccess:
+      type: object
+      properties:
+        phoneNumbers:
+          type: array
+          items:
+            type: object
+            properties:
+              phoneNumber:
+                type: string
+  parameters:
+    Phone:
+      name: phone
+      in: path
+      required: true
+      description: A phone number in international E.164 format.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.

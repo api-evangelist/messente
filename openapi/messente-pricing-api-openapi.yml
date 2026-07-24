@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance Pricing API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Pricing
+  description: Retrieve account pricelist and per-country prices.
+paths:
+  /pricelist:
+    get:
+      tags:
+      - Pricing
+      summary: Retrieves the account pricelist
+      operationId: getPricelist
+      responses:
+        '200':
+          description: The account pricelist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceInfo'
+  /prices:
+    get:
+      tags:
+      - Pricing
+      summary: Gets prices for a specific country
+      operationId: getPrices
+      parameters:
+      - name: country
+        in: query
+        required: true
+        description: Two-letter ISO 3166-1 alpha-2 country code.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Prices for the country
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceInfo'
+components:
+  schemas:
+    Price:
+      type: object
+      properties:
+        mcc:
+          type: string
+        mnc:
+          type: string
+        networkName:
+          type: string
+        price:
+          type: number
+        currency:
+          type: string
+    PriceInfo:
+      type: object
+      properties:
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.

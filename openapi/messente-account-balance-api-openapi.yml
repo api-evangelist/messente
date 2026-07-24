@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Account Balance
+  description: Retrieve the current account balance.
+paths:
+  /get_balance:
+    get:
+      tags:
+      - Account Balance
+      summary: Retrieves the account balance
+      operationId: getAccountBalance
+      responses:
+        '200':
+          description: Account balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalance'
+components:
+  schemas:
+    AccountBalance:
+      type: object
+      properties:
+        balance:
+          type: number
+        currency:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.

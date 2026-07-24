@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance Number Lookup API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Number Lookup
+  description: Fetch HLR / network information about phone numbers.
+paths:
+  /hlr/sync:
+    post:
+      tags:
+      - Number Lookup
+      summary: Requests phone number information (HLR lookup)
+      description: Performs a synchronous HLR lookup returning network, roaming, and portability information for one or more phone numbers.
+      operationId: fetchInfoSync
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumbersToInvestigate'
+      responses:
+        '200':
+          description: Number lookup results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncNumberLookupSuccess'
+components:
+  schemas:
+    SyncNumberLookupSuccess:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncNumberLookupResult'
+    SyncNumberLookupResult:
+      type: object
+      properties:
+        number:
+          type: string
+        roaming:
+          type: boolean
+        ported:
+          type: boolean
+        roamingNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        originalNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        currentNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        error:
+          type: string
+        status:
+          type: string
+    MobileNetwork:
+      type: object
+      properties:
+        mcc:
+          type: string
+        mnc:
+          type: string
+        networkName:
+          type: string
+        countryName:
+          type: string
+        countryPrefix:
+          type: string
+    NumbersToInvestigate:
+      type: object
+      required:
+      - numbers
+      properties:
+        numbers:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.

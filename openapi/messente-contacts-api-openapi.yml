@@ -1,0 +1,239 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance Contacts API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Contacts
+  description: Manage contacts in the Messente Phonebook.
+paths:
+  /phonebook/contacts:
+    get:
+      tags:
+      - Contacts
+      summary: Returns all contacts
+      operationId: fetchContacts
+      parameters:
+      - name: groupIds
+        in: query
+        required: false
+        description: Optional list of group IDs to filter contacts by.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: A list of contacts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactListEnvelope'
+    post:
+      tags:
+      - Contacts
+      summary: Creates a new contact
+      operationId: createContact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactFields'
+      responses:
+        '201':
+          description: Contact created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactEnvelope'
+  /phonebook/contacts/{phone}:
+    get:
+      tags:
+      - Contacts
+      summary: Lists a contact
+      operationId: fetchContact
+      parameters:
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '200':
+          description: A contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactEnvelope'
+    patch:
+      tags:
+      - Contacts
+      summary: Updates a contact
+      operationId: updateContact
+      parameters:
+      - $ref: '#/components/parameters/Phone'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactUpdateFields'
+      responses:
+        '200':
+          description: Contact updated
+    delete:
+      tags:
+      - Contacts
+      summary: Deletes a contact
+      operationId: deleteContact
+      parameters:
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '204':
+          description: Contact deleted
+  /phonebook/contacts/{phone}/groups:
+    get:
+      tags:
+      - Contacts
+      summary: Lists a contact's group memberships
+      operationId: fetchContactGroups
+      parameters:
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '200':
+          description: Group memberships for the contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupListEnvelope'
+  /phonebook/groups/{groupId}/contacts/{phone}:
+    post:
+      tags:
+      - Contacts
+      summary: Adds a contact to a group
+      operationId: addContactToGroup
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '200':
+          description: Contact added to group
+    delete:
+      tags:
+      - Contacts
+      summary: Removes a contact from a group
+      operationId: removeContactFromGroup
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/Phone'
+      responses:
+        '204':
+          description: Contact removed from group
+components:
+  parameters:
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      description: The identifier of the group.
+      schema:
+        type: string
+        format: uuid
+    Phone:
+      name: phone
+      in: path
+      required: true
+      description: A phone number in international E.164 format.
+      schema:
+        type: string
+  schemas:
+    ContactUpdateFields:
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        title:
+          type: string
+    ContactListEnvelope:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactResponseFields'
+    ContactFields:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        title:
+          type: string
+        custom:
+          type: string
+        custom2:
+          type: string
+        custom3:
+          type: string
+        custom4:
+          type: string
+    ContactResponseFields:
+      allOf:
+      - $ref: '#/components/schemas/ContactFields'
+      - type: object
+        properties:
+          scheduledDeletionDate:
+            type: string
+    GroupListEnvelope:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseFields'
+    ContactEnvelope:
+      type: object
+      properties:
+        contact:
+          $ref: '#/components/schemas/ContactResponseFields'
+    GroupResponseFields:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactsCount:
+          type: integer
+        createdOn:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.

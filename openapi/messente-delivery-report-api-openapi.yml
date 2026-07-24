@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Messente Account Balance Delivery Report API
+  version: 2.1.0
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  contact:
+    name: Messente Support
+    url: https://messente.com/documentation
+    email: messente@messente.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://api.messente.com/v1
+  description: Messente production API
+security:
+- basicAuth: []
+tags:
+- name: Delivery Report
+  description: Retrieve delivery status for a sent Omnimessage.
+paths:
+  /omnimessage/{omnimessageId}/status:
+    get:
+      tags:
+      - Delivery Report
+      summary: Retrieves the delivery report for an Omnimessage
+      operationId: retrieveDeliveryReport
+      parameters:
+      - name: omnimessageId
+        in: path
+        required: true
+        description: The identifier of the Omnimessage.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Delivery report retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryReportResponse'
+        '404':
+          description: Omnimessage not found
+components:
+  schemas:
+    DeliveryReportResponse:
+      type: object
+      properties:
+        statuses:
+          type: array
+          items:
+            type: object
+            properties:
+              channel:
+                type: string
+              message_id:
+                type: string
+              sender:
+                type: string
+              status:
+                type: string
+              err:
+                type: string
+        to:
+          type: string
+        omnimessage_id:
+          type: string
+          format: uuid
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using the API username and password from the Messente dashboard API settings.
