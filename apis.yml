@@ -8,7 +8,20 @@ description: Messente is an Estonian CPaaS provider of global messaging and user
   the Phonebook, phone number (HLR) lookup, PIN-based number verification / 2FA,
   delivery reports, and messaging statistics over an HTTP Basic authenticated REST
   API at api.messente.com/v1.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/messente.png
 tags:
 - CPaaS
 - Messaging
@@ -21,127 +34,248 @@ created: '2026-07-01'
 modified: '2026-07-01'
 specificationVersion: '0.19'
 apis:
-- aid: messente:messente-omnimessage-api
-  name: Messente Omnimessage API
-  tags:
-  - Omnimessage
-  - Messaging
-  - Fallback
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: messente:messente-account-balance-api
+  name: Messente Account Balance API
+  description: Retrieve the current account balance.
   humanURL: https://messente.com/documentation/omnichannel-api
   baseURL: https://api.messente.com/v1
-  properties:
-  - url: https://messente.com/documentation/omnichannel-api
-    type: Documentation
-  - url: https://messente.com/documentation
-    type: APIReference
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: The unified Omnimessage endpoint sends a message across SMS, Viber,
-    WhatsApp, and Telegram as an ordered fallback chain, attempting each channel in
-    priority order until delivery succeeds, and supports cancelling scheduled messages.
-- aid: messente:messente-sms-api
-  name: Messente SMS API
   tags:
-  - SMS
-  - Text Messaging
-  - Bulk
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Account Balance
+  properties:
+  - type: OpenAPI
+    url: openapi/messente-account-balance-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
+- aid: messente:messente-blacklist-api
+  name: Messente Blacklist API
+  description: Manage the phone number blacklist.
   humanURL: https://messente.com/documentation/omnichannel-api
   baseURL: https://api.messente.com/v1
+  tags:
+  - Blacklist
   properties:
-  - url: https://messente.com/documentation/omnichannel-api
-    type: Documentation
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: Global SMS delivery via the Omnimessage endpoint with sender ID, GSM/Unicode
-    autoconvert, validity periods, and bulk sending to many recipients in a single
-    request.
+  - type: OpenAPI
+    url: openapi/messente-blacklist-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
+- aid: messente:messente-bulk-messaging-api
+  name: Messente Bulk Messaging API
+  description: Send an Omnimessage to many recipients in a single request.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
+  tags:
+  - Bulk Messaging
+  properties:
+  - type: OpenAPI
+    url: openapi/messente-bulk-messaging-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
 - aid: messente:messente-contacts-api
   name: Messente Contacts API
+  description: Manage contacts in the Messente Phonebook.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
   tags:
   - Contacts
-  - Phonebook
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://messente.com/documentation/phonebook-api
-  baseURL: https://api.messente.com/v1
   properties:
-  - url: https://messente.com/documentation/phonebook-api
-    type: Documentation
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: Create, read, update, and delete contacts in the Messente Phonebook
-    under /phonebook/contacts, manage their group memberships, and maintain a phone
-    number blacklist to suppress unwanted messages.
+  - type: OpenAPI
+    url: openapi/messente-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
+- aid: messente:messente-delivery-report-api
+  name: Messente Delivery Report API
+  description: Retrieve delivery status for a sent Omnimessage.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
+  tags:
+  - Delivery Report
+  properties:
+  - type: OpenAPI
+    url: openapi/messente-delivery-report-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
 - aid: messente:messente-groups-api
   name: Messente Groups API
+  description: Manage contact groups in the Messente Phonebook.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
   tags:
   - Groups
-  - Phonebook
-  - Segmentation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://messente.com/documentation/phonebook-api
-  baseURL: https://api.messente.com/v1
   properties:
-  - url: https://messente.com/documentation/phonebook-api
-    type: Documentation
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: Manage contact groups under /phonebook/groups for segmentation and
-    targeted bulk messaging, including creating, updating, listing, and deleting groups
-    and adding or removing contacts from them.
+  - type: OpenAPI
+    url: openapi/messente-groups-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
 - aid: messente:messente-number-lookup-api
   name: Messente Number Lookup API
+  description: Fetch HLR / network information about phone numbers.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
   tags:
   - Number Lookup
-  - HLR
-  - Number Verification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://messente.com/documentation/phone-number-lookup-api
-  baseURL: https://api.messente.com/v1
   properties:
-  - url: https://messente.com/documentation/phone-number-lookup-api
-    type: Documentation
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: Synchronous HLR lookup at /hlr/sync returns network, roaming, and
-    portability information for phone numbers, plus PIN-based number verification (2FA)
-    at /verify/start and /verify/pin for confirming a user controls a number.
+  - type: OpenAPI
+    url: openapi/messente-number-lookup-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
+- aid: messente:messente-number-verification-api
+  name: Messente Number Verification API
+  description: PIN-based phone number verification (2FA / one-time passwords).
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
+  tags:
+  - Number Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/messente-number-verification-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
+- aid: messente:messente-omnimessage-api
+  name: Messente Omnimessage API
+  description: Send SMS, Viber, WhatsApp, and Telegram messages with an automatic fallback chain.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
+  tags:
+  - Omnimessage
+  properties:
+  - type: OpenAPI
+    url: openapi/messente-omnimessage-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
+- aid: messente:messente-pricing-api
+  name: Messente Pricing API
+  description: Retrieve account pricelist and per-country prices.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/messente-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
 - aid: messente:messente-statistics-api
   name: Messente Statistics API
+  description: Request messaging statistics reports by country.
+  humanURL: https://messente.com/documentation/omnichannel-api
+  baseURL: https://api.messente.com/v1
   tags:
   - Statistics
-  - Reporting
-  - Analytics
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://messente.com/documentation/statistics-api
-  baseURL: https://api.messente.com/v1
   properties:
-  - url: https://messente.com/documentation/statistics-api
-    type: Documentation
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: Request messaging statistics reports by country and destination network
-    (MCC/MNC) over a date range at /statistics/reports, reporting sent, delivered,
-    and failed message counts.
-- aid: messente:messente-delivery-reports-api
-  name: Messente Delivery Reports API
-  tags:
-  - Delivery Reports
-  - Webhooks
-  - Status
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://messente.com/documentation/omnichannel-api/delivery-report
-  baseURL: https://api.messente.com/v1
-  properties:
-  - url: https://messente.com/documentation/omnichannel-api/delivery-report
-    type: Documentation
-  - url: openapi/messente-openapi.yml
-    type: OpenAPI
-  description: Retrieve per-channel delivery status for a sent Omnimessage at
-    /omnimessage/{omnimessageId}/status, or receive asynchronous status pushes to a
-    configured delivery report callback (webhook) URL.
+  - type: OpenAPI
+    url: openapi/messente-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api
+  - type: APIReference
+    url: https://messente.com/documentation
+  - type: Documentation
+    url: https://messente.com/documentation/phonebook-api
+  - type: Documentation
+    url: https://messente.com/documentation/phone-number-lookup-api
+  - type: Documentation
+    url: https://messente.com/documentation/statistics-api
+  - type: Documentation
+    url: https://messente.com/documentation/omnichannel-api/delivery-report
 common:
 - type: AgenticAccess
   url: agentic-access/messente-agentic-access.yml
