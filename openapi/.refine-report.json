@@ -1,0 +1,34 @@
+{
+  "provider": "messente",
+  "sources": [
+    "messente-account-balance-api-openapi.yml",
+    "messente-blacklist-api-openapi.yml",
+    "messente-bulk-messaging-api-openapi.yml",
+    "messente-contacts-api-openapi.yml",
+    "messente-delivery-report-api-openapi.yml",
+    "messente-groups-api-openapi.yml",
+    "messente-number-lookup-api-openapi.yml",
+    "messente-number-verification-api-openapi.yml",
+    "messente-omnimessage-api-openapi.yml",
+    "messente-pricing-api-openapi.yml",
+    "messente-statistics-api-openapi.yml"
+  ],
+  "outputs": [
+    "messente-account-balance-api-openapi.yml",
+    "messente-blacklist-api-openapi.yml",
+    "messente-bulk-messaging-api-openapi.yml",
+    "messente-contacts-api-openapi.yml",
+    "messente-delivery-report-api-openapi.yml",
+    "messente-groups-api-openapi.yml",
+    "messente-number-lookup-api-openapi.yml",
+    "messente-number-verification-api-openapi.yml",
+    "messente-omnimessage-api-openapi.yml",
+    "messente-pricing-api-openapi.yml",
+    "messente-statistics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
