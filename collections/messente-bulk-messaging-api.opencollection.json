@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Bulk Messaging API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends a bulk Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/omnimessages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an Omnimessage to multiple recipients in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

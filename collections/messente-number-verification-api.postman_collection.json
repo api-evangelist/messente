@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "59cbb82b-8cfb-4d11-a6c1-adc9c889e609",
+      "name": "Number Verification",
+      "description": {
+        "content": "PIN-based phone number verification (2FA / one-time passwords).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a526f2a-f093-4707-9cfc-afffd3fa60b5",
+          "name": "Initiates phone number verification",
+          "request": {
+            "name": "Initiates phone number verification",
+            "description": {
+              "content": "Sends a PIN code to a phone number to begin verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"<string>\",\n  \"messages\": [\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    }\n  ],\n  \"text_store\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45d927d8-61d5-4e2a-bb42-e3dee93daa08",
+              "name": "Verification initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"messages\": [\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    }\n  ],\n  \"text_store\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"channel\": \"string\",\n      \"message_id\": \"string\",\n      \"sender\": \"string\"\n    },\n    {\n      \"channel\": \"string\",\n      \"message_id\": \"string\",\n      \"sender\": \"string\"\n    }\n  ],\n  \"to\": \"string\",\n  \"omnimessage\": \"8df04f3e-adf9-e738-244d-35037e8e30a1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d370c25-8c14-4159-b4e5-e58325656117",
+          "name": "Verifies a PIN code",
+          "request": {
+            "name": "Verifies a PIN code",
+            "description": {
+              "content": "Checks a PIN entered by the user against a verification session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "pin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"verificationId\": \"<uuid>\",\n  \"pin\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c77f96d6-9067-4c71-bcf7-e1241b3b0906",
+              "name": "PIN verified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "pin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verificationId\": \"<uuid>\",\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e89f056-2fbe-4b18-b005-9b7f43d2dd23",
+              "name": "Invalid or expired PIN",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "pin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verificationId\": \"<uuid>\",\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41b934ec-c37d-4667-88af-fca630a2754d",
+    "name": "Messente Account Balance Number Verification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Pricing API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the account pricelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/pricelist"
+          },
+          "docs": "Retrieves the account pricelist"
+        },
+        {
+          "info": {
+            "name": "Gets prices for a specific country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/prices",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter ISO 3166-1 alpha-2 country code."
+              }
+            ]
+          },
+          "docs": "Gets prices for a specific country"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

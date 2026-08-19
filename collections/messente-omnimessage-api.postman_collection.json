@@ -1,0 +1,369 @@
+{
+  "item": [
+    {
+      "id": "235ce728-049d-43e9-8f48-b4da4fd3b8a6",
+      "name": "Omnimessage",
+      "description": {
+        "content": "Send SMS, Viber, WhatsApp, and Telegram messages with an automatic fallback chain.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f6ac190-bbc8-4a9f-8514-036ebf914ab0",
+          "name": "Sends an Omnimessage",
+          "request": {
+            "name": "Sends an Omnimessage",
+            "description": {
+              "content": "Sends an Omnimessage across one or more channels (SMS, Viber, WhatsApp, Telegram). Channels are attempted in the order supplied as a fallback chain until delivery succeeds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "omnimessage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"<string>\",\n  \"messages\": [\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    }\n  ],\n  \"text_store\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4bd5294b-458b-4ef2-8eaf-43c4034bddde",
+              "name": "Omnimessage accepted for sending",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"messages\": [\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    }\n  ],\n  \"text_store\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"channel\": \"string\",\n      \"message_id\": \"string\",\n      \"sender\": \"string\"\n    },\n    {\n      \"channel\": \"string\",\n      \"message_id\": \"string\",\n      \"sender\": \"string\"\n    }\n  ],\n  \"to\": \"string\",\n  \"omnimessage\": \"d0ec8db5-41db-ca3a-3889-f42842fd5075\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "374d7b55-5385-4e03-8fea-123654ef53bc",
+              "name": "Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"messages\": [\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    }\n  ],\n  \"text_store\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1fdec1f4-dfb8-4c94-931e-2500df93217d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"messages\": [\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"channel\": \"sms\",\n      \"sender\": \"<string>\",\n      \"validity\": \"<integer>\",\n      \"autoconvert\": \"<string>\"\n    }\n  ],\n  \"text_store\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9296a216-0bfb-40b7-ab49-805f31b404e4",
+          "name": "Cancels a scheduled Omnimessage",
+          "request": {
+            "name": "Cancels a scheduled Omnimessage",
+            "description": {},
+            "url": {
+              "path": [
+                "omnimessage",
+                ":omnimessageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "omnimessageId",
+                  "description": "(Required) The identifier of the Omnimessage to cancel."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d355031c-957c-4214-9887-a97e62f79f7f",
+              "name": "Omnimessage cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage",
+                    ":omnimessageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "omnimessageId",
+                      "description": "(Required) The identifier of the Omnimessage to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c31dd2d5-e7d2-485c-80dc-4962a273c090",
+              "name": "Omnimessage not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage",
+                    ":omnimessageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "omnimessageId",
+                      "description": "(Required) The identifier of the Omnimessage to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "89fbb39a-8f53-4562-84c5-06573a105ac3",
+    "name": "Messente Account Balance Omnimessage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "item": [
+    {
+      "id": "243510f8-5e47-4a0a-91fc-146b16aede9f",
+      "name": "Pricing",
+      "description": {
+        "content": "Retrieve account pricelist and per-country prices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a9a6705-5d3f-4c7c-9bdc-816d800bb415",
+          "name": "Retrieves the account pricelist",
+          "request": {
+            "name": "Retrieves the account pricelist",
+            "description": {},
+            "url": {
+              "path": [
+                "pricelist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1900026a-ac5c-4b16-8e2f-9a00145562a8",
+              "name": "The account pricelist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricelist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prices\": [\n    {\n      \"mcc\": \"string\",\n      \"mnc\": \"string\",\n      \"networkName\": \"string\",\n      \"price\": 3936.689784161068,\n      \"currency\": \"string\"\n    },\n    {\n      \"mcc\": \"string\",\n      \"mnc\": \"string\",\n      \"networkName\": \"string\",\n      \"price\": 8712.338122997337,\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d018782d-09f4-4c68-bbc5-8bfc4d6b99dd",
+          "name": "Gets prices for a specific country",
+          "request": {
+            "name": "Gets prices for a specific country",
+            "description": {},
+            "url": {
+              "path": [
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) Two-letter ISO 3166-1 alpha-2 country code."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49357092-028d-4ee8-a97a-5e7f60487e84",
+              "name": "Prices for the country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prices\": [\n    {\n      \"mcc\": \"string\",\n      \"mnc\": \"string\",\n      \"networkName\": \"string\",\n      \"price\": 1883.1308612181886,\n      \"currency\": \"string\"\n    },\n    {\n      \"mcc\": \"string\",\n      \"mnc\": \"string\",\n      \"networkName\": \"string\",\n      \"price\": 5347.663734551819,\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dde538b5-6006-4644-ae1a-cb4becaad0dd",
+    "name": "Messente Account Balance Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

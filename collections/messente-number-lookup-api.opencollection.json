@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Number Lookup API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Number Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Requests phone number information (HLR lookup)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/hlr/sync",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a synchronous HLR lookup returning network, roaming, and portability information for one or more phone numbers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

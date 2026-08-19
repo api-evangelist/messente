@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "4c3e0b9d-728c-45af-9daf-b0ce19f43cc4",
+      "name": "Delivery Report",
+      "description": {
+        "content": "Retrieve delivery status for a sent Omnimessage.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78491e05-d57b-4245-b7e5-f43fe10f2993",
+          "name": "Retrieves the delivery report for an Omnimessage",
+          "request": {
+            "name": "Retrieves the delivery report for an Omnimessage",
+            "description": {},
+            "url": {
+              "path": [
+                "omnimessage",
+                ":omnimessageId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "omnimessageId",
+                  "description": "(Required) The identifier of the Omnimessage."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe5d526e-4f71-436f-9e8e-b7f689772fbd",
+              "name": "Delivery report retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage",
+                    ":omnimessageId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "omnimessageId",
+                      "description": "(Required) The identifier of the Omnimessage."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statuses\": [\n    {\n      \"channel\": \"string\",\n      \"message_id\": \"string\",\n      \"sender\": \"string\",\n      \"status\": \"string\",\n      \"err\": \"string\"\n    },\n    {\n      \"channel\": \"string\",\n      \"message_id\": \"string\",\n      \"sender\": \"string\",\n      \"status\": \"string\",\n      \"err\": \"string\"\n    }\n  ],\n  \"to\": \"string\",\n  \"omnimessage_id\": \"5f18ff71-0354-22ef-d1d6-170d1325abc7\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ce89399-1829-418e-8f97-18a9d3cb5fab",
+              "name": "Omnimessage not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessage",
+                    ":omnimessageId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "omnimessageId",
+                      "description": "(Required) The identifier of the Omnimessage."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a4de4f84-5541-4ee3-a898-ae1b174d97a3",
+    "name": "Messente Account Balance Delivery Report API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

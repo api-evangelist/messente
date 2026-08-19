@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Statistics API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Requests statistics reports by country",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/statistics/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests statistics reports by country"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,833 @@
+{
+  "item": [
+    {
+      "id": "20958c49-71d2-4795-8b48-1ebe4db5d9d0",
+      "name": "Contacts",
+      "description": {
+        "content": "Manage contacts in the Messente Phonebook.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de69fc1a-fb03-41ed-969a-6f48246a936e",
+          "name": "Returns all contacts",
+          "request": {
+            "name": "Returns all contacts",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupIds",
+                  "value": "<string>",
+                  "description": "Optional list of group IDs to filter contacts by."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIds",
+                  "value": "<string>",
+                  "description": "Optional list of group IDs to filter contacts by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cbd5e33-92e7-4cb4-be90-d8caaf894e96",
+              "name": "A list of contacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contacts\": [\n    {\n      \"phoneNumber\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"company\": \"string\",\n      \"title\": \"string\",\n      \"custom\": \"string\",\n      \"custom2\": \"string\",\n      \"custom3\": \"string\",\n      \"custom4\": \"string\",\n      \"scheduledDeletionDate\": \"string\"\n    },\n    {\n      \"phoneNumber\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"company\": \"string\",\n      \"title\": \"string\",\n      \"custom\": \"string\",\n      \"custom2\": \"string\",\n      \"custom3\": \"string\",\n      \"custom4\": \"string\",\n      \"scheduledDeletionDate\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52707df2-300e-4c86-9a58-64d8711d168a",
+          "name": "Creates a new contact",
+          "request": {
+            "name": "Creates a new contact",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"title\": \"<string>\",\n  \"custom\": \"<string>\",\n  \"custom2\": \"<string>\",\n  \"custom3\": \"<string>\",\n  \"custom4\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78cd327a-70d2-467d-8777-16e0708a3dc5",
+              "name": "Contact created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"title\": \"<string>\",\n  \"custom\": \"<string>\",\n  \"custom2\": \"<string>\",\n  \"custom3\": \"<string>\",\n  \"custom4\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"title\": \"<string>\",\n    \"custom\": \"<string>\",\n    \"custom2\": \"<string>\",\n    \"custom3\": \"<string>\",\n    \"custom4\": \"<string>\",\n    \"scheduledDeletionDate\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76408da1-0302-4f40-a262-76c1bd2d2086",
+          "name": "Lists a contact",
+          "request": {
+            "name": "Lists a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "contacts",
+                ":phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phone",
+                  "description": "(Required) A phone number in international E.164 format."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a92fda2d-87c2-4ff0-9cd6-04fb9eafbd06",
+              "name": "A contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "contacts",
+                    ":phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phone",
+                      "description": "(Required) A phone number in international E.164 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"title\": \"<string>\",\n    \"custom\": \"<string>\",\n    \"custom2\": \"<string>\",\n    \"custom3\": \"<string>\",\n    \"custom4\": \"<string>\",\n    \"scheduledDeletionDate\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "370b7d86-b2d9-4bc3-a360-0c7112a0c690",
+          "name": "Updates a contact",
+          "request": {
+            "name": "Updates a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "contacts",
+                ":phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phone",
+                  "description": "(Required) A phone number in international E.164 format."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81d370d5-78c4-48f0-b9e6-6252eed2c839",
+              "name": "Contact updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "contacts",
+                    ":phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phone",
+                      "description": "(Required) A phone number in international E.164 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60400822-ff12-46a4-9ef2-b0c934d435a6",
+          "name": "Deletes a contact",
+          "request": {
+            "name": "Deletes a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "contacts",
+                ":phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phone",
+                  "description": "(Required) A phone number in international E.164 format."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b408fcf7-e504-4124-9548-48450c034308",
+              "name": "Contact deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "contacts",
+                    ":phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phone",
+                      "description": "(Required) A phone number in international E.164 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "156f8c13-f932-4d72-8834-0af011332ead",
+          "name": "Lists a contact's group memberships",
+          "request": {
+            "name": "Lists a contact's group memberships",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "contacts",
+                ":phone",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phone",
+                  "description": "(Required) A phone number in international E.164 format."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cca5a3c-8614-4caa-94b7-e65f8c486ad1",
+              "name": "Group memberships for the contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "contacts",
+                    ":phone",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phone",
+                      "description": "(Required) A phone number in international E.164 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"id\": \"331d7e94-e055-7317-63e5-3ca0e7e3cb51\",\n      \"name\": \"string\",\n      \"contactsCount\": 5165,\n      \"createdOn\": \"string\"\n    },\n    {\n      \"id\": \"4db31cc5-672a-3957-71e7-142505fcaded\",\n      \"name\": \"string\",\n      \"contactsCount\": 2305,\n      \"createdOn\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "515a4851-bc77-43d4-8dae-1b8983953024",
+          "name": "Adds a contact to a group",
+          "request": {
+            "name": "Adds a contact to a group",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "groups",
+                ":groupId",
+                "contacts",
+                ":phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) The identifier of the group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phone",
+                  "description": "(Required) A phone number in international E.164 format."
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ccfba6d-f1bd-44ab-b5ab-49f01bf0932a",
+              "name": "Contact added to group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "groups",
+                    ":groupId",
+                    "contacts",
+                    ":phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phone",
+                      "description": "(Required) A phone number in international E.164 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1ce5826-f464-4578-b38d-3ad15b9dfe04",
+          "name": "Removes a contact from a group",
+          "request": {
+            "name": "Removes a contact from a group",
+            "description": {},
+            "url": {
+              "path": [
+                "phonebook",
+                "groups",
+                ":groupId",
+                "contacts",
+                ":phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) The identifier of the group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phone",
+                  "description": "(Required) A phone number in international E.164 format."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b13975d-503b-446d-9f7e-078590485468",
+              "name": "Contact removed from group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "phonebook",
+                    "groups",
+                    ":groupId",
+                    "contacts",
+                    ":phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phone",
+                      "description": "(Required) A phone number in international E.164 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2aefd9ef-43c7-47d2-ab06-b0073346621a",
+    "name": "Messente Account Balance Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

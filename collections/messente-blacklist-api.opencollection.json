@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Blacklist API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blacklist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all blacklisted phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/blacklist"
+          },
+          "docs": "Returns all blacklisted phone numbers"
+        },
+        {
+          "info": {
+            "name": "Adds a phone number to the blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/blacklist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a phone number to the blacklist"
+        },
+        {
+          "info": {
+            "name": "Checks if a phone number is blacklisted",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/blacklist/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Checks if a phone number is blacklisted"
+        },
+        {
+          "info": {
+            "name": "Removes a phone number from the blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/blacklist/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Removes a phone number from the blacklist"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

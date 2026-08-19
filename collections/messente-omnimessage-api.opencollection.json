@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Omnimessage API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Omnimessage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sends an Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/omnimessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an Omnimessage across one or more channels (SMS, Viber, WhatsApp, Telegram). Channels are attempted in the order supplied as a fallback chain until delivery succeeds."
+        },
+        {
+          "info": {
+            "name": "Cancels a scheduled Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/omnimessage/:omnimessageId",
+            "params": [
+              {
+                "name": "omnimessageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the Omnimessage to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a scheduled Omnimessage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

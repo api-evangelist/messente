@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Delivery Report API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delivery Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the delivery report for an Omnimessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/omnimessage/:omnimessageId/status",
+            "params": [
+              {
+                "name": "omnimessageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the Omnimessage."
+              }
+            ]
+          },
+          "docs": "Retrieves the delivery report for an Omnimessage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

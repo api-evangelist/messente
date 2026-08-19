@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Balance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/get_balance"
+          },
+          "docs": "Retrieves the account balance"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

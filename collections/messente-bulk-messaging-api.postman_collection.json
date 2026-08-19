@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "946925e6-5783-4cdc-9942-fce2bf831372",
+      "name": "Bulk Messaging",
+      "description": {
+        "content": "Send an Omnimessage to many recipients in a single request.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3481e300-c937-4ebb-aa42-8f94ff94b459",
+          "name": "Sends a bulk Omnimessage",
+          "request": {
+            "name": "Sends a bulk Omnimessage",
+            "description": {
+              "content": "Sends an Omnimessage to multiple recipients in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "omnimessages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"to\": \"<string>\",\n      \"messages\": [\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        },\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        }\n      ],\n      \"text_store\": \"<string>\"\n    },\n    {\n      \"to\": \"<string>\",\n      \"messages\": [\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        },\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        }\n      ],\n      \"text_store\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad2eb103-1477-4b4c-95c8-839b02b47d20",
+              "name": "Bulk Omnimessage accepted for sending",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"to\": \"<string>\",\n      \"messages\": [\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        },\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        }\n      ],\n      \"text_store\": \"<string>\"\n    },\n    {\n      \"to\": \"<string>\",\n      \"messages\": [\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        },\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        }\n      ],\n      \"text_store\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a0a649c-2e23-4b66-9176-5ff928c1aa54",
+              "name": "Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "omnimessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"to\": \"<string>\",\n      \"messages\": [\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        },\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        }\n      ],\n      \"text_store\": \"<string>\"\n    },\n    {\n      \"to\": \"<string>\",\n      \"messages\": [\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        },\n        {\n          \"text\": \"<string>\",\n          \"channel\": \"sms\",\n          \"sender\": \"<string>\",\n          \"validity\": \"<integer>\",\n          \"autoconvert\": \"<string>\"\n        }\n      ],\n      \"text_store\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c3068c44-70f2-4a4c-8aa8-5ea924134d14",
+    "name": "Messente Account Balance Bulk Messaging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

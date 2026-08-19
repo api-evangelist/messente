@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "42892c43-b6ff-4844-a1c2-cbb01ec7cd4a",
+      "name": "Number Lookup",
+      "description": {
+        "content": "Fetch HLR / network information about phone numbers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2feb18a7-9970-427c-80a7-8da4c3cf9375",
+          "name": "Requests phone number information (HLR lookup)",
+          "request": {
+            "name": "Requests phone number information (HLR lookup)",
+            "description": {
+              "content": "Performs a synchronous HLR lookup returning network, roaming, and portability information for one or more phone numbers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hlr",
+                "sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ae37dc48-aa6b-4a76-9a63-4dd53270a3c3",
+              "name": "Number lookup results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hlr",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"number\": \"string\",\n      \"roaming\": false,\n      \"ported\": true,\n      \"roamingNetwork\": {\n        \"mcc\": \"string\",\n        \"mnc\": \"string\",\n        \"networkName\": \"string\",\n        \"countryName\": \"string\",\n        \"countryPrefix\": \"string\"\n      },\n      \"originalNetwork\": {\n        \"mcc\": \"string\",\n        \"mnc\": \"string\",\n        \"networkName\": \"string\",\n        \"countryName\": \"string\",\n        \"countryPrefix\": \"string\"\n      },\n      \"currentNetwork\": {\n        \"mcc\": \"string\",\n        \"mnc\": \"string\",\n        \"networkName\": \"string\",\n        \"countryName\": \"string\",\n        \"countryPrefix\": \"string\"\n      },\n      \"error\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"number\": \"string\",\n      \"roaming\": true,\n      \"ported\": false,\n      \"roamingNetwork\": {\n        \"mcc\": \"string\",\n        \"mnc\": \"string\",\n        \"networkName\": \"string\",\n        \"countryName\": \"string\",\n        \"countryPrefix\": \"string\"\n      },\n      \"originalNetwork\": {\n        \"mcc\": \"string\",\n        \"mnc\": \"string\",\n        \"networkName\": \"string\",\n        \"countryName\": \"string\",\n        \"countryPrefix\": \"string\"\n      },\n      \"currentNetwork\": {\n        \"mcc\": \"string\",\n        \"mnc\": \"string\",\n        \"networkName\": \"string\",\n        \"countryName\": \"string\",\n        \"countryPrefix\": \"string\"\n      },\n      \"error\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.messente.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e56ca4d-7158-4242-9acc-5e9e242c444b",
+    "name": "Messente Account Balance Number Lookup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.\n\nContact Support:\n Name: Messente Support\n Email: messente@messente.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Number Verification API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Number Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiates phone number verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/verify/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a PIN code to a phone number to begin verification."
+        },
+        {
+          "info": {
+            "name": "Verifies a PIN code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/verify/pin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checks a PIN entered by the user against a verification session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

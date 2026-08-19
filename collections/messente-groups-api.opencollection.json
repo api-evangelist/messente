@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Groups API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/groups"
+          },
+          "docs": "Returns all groups"
+        },
+        {
+          "info": {
+            "name": "Creates a new group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new group"
+        },
+        {
+          "info": {
+            "name": "Lists a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the group."
+              }
+            ]
+          },
+          "docs": "Lists a group"
+        },
+        {
+          "info": {
+            "name": "Updates a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a group"
+        },
+        {
+          "info": {
+            "name": "Deletes a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the group."
+              }
+            ]
+          },
+          "docs": "Deletes a group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

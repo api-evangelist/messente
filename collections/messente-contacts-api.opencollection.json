@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Messente Account Balance Contacts API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/contacts",
+            "params": [
+              {
+                "name": "groupIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional list of group IDs to filter contacts by."
+              }
+            ]
+          },
+          "docs": "Returns all contacts"
+        },
+        {
+          "info": {
+            "name": "Creates a new contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new contact"
+        },
+        {
+          "info": {
+            "name": "Lists a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Lists a contact"
+        },
+        {
+          "info": {
+            "name": "Updates a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a contact"
+        },
+        {
+          "info": {
+            "name": "Deletes a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Deletes a contact"
+        },
+        {
+          "info": {
+            "name": "Lists a contact's group memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.messente.com/v1/phonebook/contacts/:phone/groups",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Lists a contact's group memberships"
+        },
+        {
+          "info": {
+            "name": "Adds a contact to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId/contacts/:phone",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the group."
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Adds a contact to a group"
+        },
+        {
+          "info": {
+            "name": "Removes a contact from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.messente.com/v1/phonebook/groups/:groupId/contacts/:phone",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the group."
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "A phone number in international E.164 format."
+              }
+            ]
+          },
+          "docs": "Removes a contact from a group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
