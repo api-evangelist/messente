@@ -150,6 +150,8 @@ apis:
   humanURL: https://messente.com/documentation/omnichannel-api
   baseURL: https://api.messente.com/v1
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
