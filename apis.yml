@@ -8,6 +8,18 @@ description: Messente is an Estonian CPaaS provider of global messaging and user
   the Phonebook, phone number (HLR) lookup, PIN-based number verification / 2FA,
   delivery reports, and messaging statistics over an HTTP Basic authenticated REST
   API at api.messente.com/v1.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
