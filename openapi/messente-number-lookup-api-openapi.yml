@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Messente Account Balance Number Lookup API
+  title: Messente Number Lookup API
   version: 2.1.0
-  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia.
   contact:
     name: Messente Support
     url: https://messente.com/documentation
@@ -48,25 +48,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SyncNumberLookupResult'
-    SyncNumberLookupResult:
-      type: object
-      properties:
-        number:
-          type: string
-        roaming:
-          type: boolean
-        ported:
-          type: boolean
-        roamingNetwork:
-          $ref: '#/components/schemas/MobileNetwork'
-        originalNetwork:
-          $ref: '#/components/schemas/MobileNetwork'
-        currentNetwork:
-          $ref: '#/components/schemas/MobileNetwork'
-        error:
-          type: string
-        status:
-          type: string
     MobileNetwork:
       type: object
       properties:
@@ -89,6 +70,25 @@ components:
           type: array
           items:
             type: string
+    SyncNumberLookupResult:
+      type: object
+      properties:
+        number:
+          type: string
+        roaming:
+          type: boolean
+        ported:
+          type: boolean
+        roamingNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        originalNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        currentNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        error:
+          type: string
+        status:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

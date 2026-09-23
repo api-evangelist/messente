@@ -1,17 +1,7 @@
 {
   "provider": "messente",
   "sources": [
-    "messente-account-balance-api-openapi.yml",
-    "messente-blacklist-api-openapi.yml",
-    "messente-bulk-messaging-api-openapi.yml",
-    "messente-contacts-api-openapi.yml",
-    "messente-delivery-report-api-openapi.yml",
-    "messente-groups-api-openapi.yml",
-    "messente-number-lookup-api-openapi.yml",
-    "messente-number-verification-api-openapi.yml",
-    "messente-omnimessage-api-openapi.yml",
-    "messente-pricing-api-openapi.yml",
-    "messente-statistics-api-openapi.yml"
+    "_original/messente-openapi.yml"
   ],
   "outputs": [
     "messente-account-balance-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "messente-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "messente-account-balance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-blacklist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-bulk-messaging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-delivery-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-number-lookup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-number-verification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-omnimessage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "messente-statistics-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

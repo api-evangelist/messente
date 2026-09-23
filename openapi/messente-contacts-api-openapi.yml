@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Messente Account Balance Contacts API
+  title: Messente Contacts API
   version: 2.1.0
-  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia.
   contact:
     name: Messente Support
     url: https://messente.com/documentation
@@ -139,23 +139,26 @@ paths:
         '204':
           description: Contact removed from group
 components:
-  parameters:
-    GroupId:
-      name: groupId
-      in: path
-      required: true
-      description: The identifier of the group.
-      schema:
-        type: string
-        format: uuid
-    Phone:
-      name: phone
-      in: path
-      required: true
-      description: A phone number in international E.164 format.
-      schema:
-        type: string
   schemas:
+    GroupResponseFields:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactsCount:
+          type: integer
+        createdOn:
+          type: string
+    GroupListEnvelope:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseFields'
     ContactUpdateFields:
       type: object
       properties:
@@ -169,6 +172,13 @@ components:
           type: string
         title:
           type: string
+    ContactResponseFields:
+      allOf:
+      - $ref: '#/components/schemas/ContactFields'
+      - type: object
+        properties:
+          scheduledDeletionDate:
+            type: string
     ContactListEnvelope:
       type: object
       properties:
@@ -176,6 +186,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ContactResponseFields'
+    ContactEnvelope:
+      type: object
+      properties:
+        contact:
+          $ref: '#/components/schemas/ContactResponseFields'
     ContactFields:
       type: object
       required:
@@ -201,37 +216,22 @@ components:
           type: string
         custom4:
           type: string
-    ContactResponseFields:
-      allOf:
-      - $ref: '#/components/schemas/ContactFields'
-      - type: object
-        properties:
-          scheduledDeletionDate:
-            type: string
-    GroupListEnvelope:
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseFields'
-    ContactEnvelope:
-      type: object
-      properties:
-        contact:
-          $ref: '#/components/schemas/ContactResponseFields'
-    GroupResponseFields:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contactsCount:
-          type: integer
-        createdOn:
-          type: string
+  parameters:
+    Phone:
+      name: phone
+      in: path
+      required: true
+      description: A phone number in international E.164 format.
+      schema:
+        type: string
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      description: The identifier of the group.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     basicAuth:
       type: http

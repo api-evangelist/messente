@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Messente Account Balance Omnimessage API
+  title: Messente Omnimessage API
   version: 2.1.0
-  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia. Send and receive SMS, Viber, and WhatsApp messages through a single Omnimessage endpoint with an automatic fallback chain, manage contacts and groups in the Phonebook, look up phone number (HLR) information, run PIN-based number verification / 2FA, retrieve delivery reports, and pull messaging statistics. This is a faithful, representative OpenAPI description of the public Messente REST API; consult the official documentation for the authoritative contract.
+  description: Messente is a global CPaaS provider of messaging and user verification services based in Estonia.
   contact:
     name: Messente Support
     url: https://messente.com/documentation
@@ -77,6 +77,60 @@ components:
           type: string
         text:
           $ref: '#/components/schemas/WhatsAppText'
+    Viber:
+      type: object
+      description: A Viber channel message.
+      required:
+      - text
+      properties:
+        channel:
+          type: string
+          enum:
+          - viber
+          default: viber
+        sender:
+          type: string
+        text:
+          type: string
+        image_url:
+          type: string
+        button_url:
+          type: string
+        button_text:
+          type: string
+        validity:
+          type: integer
+    WhatsAppText:
+      type: object
+      properties:
+        body:
+          type: string
+        preview_url:
+          type: boolean
+    Omnimessage:
+      type: object
+      description: A message delivered over one or more channels. The messages array defines the fallback chain in priority order.
+      required:
+      - to
+      - messages
+      properties:
+        to:
+          type: string
+          description: Recipient phone number in international E.164 format.
+        messages:
+          type: array
+          description: Ordered list of channel-specific messages forming the fallback chain.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/SMS'
+            - $ref: '#/components/schemas/Viber'
+            - $ref: '#/components/schemas/WhatsApp'
+        text_store:
+          type: string
+          enum:
+          - nostore
+          - plaintext
+          - sha256
     SMS:
       type: object
       description: An SMS channel message.
@@ -102,60 +156,6 @@ components:
           - full
           - 'on'
           - 'off'
-    WhatsAppText:
-      type: object
-      properties:
-        body:
-          type: string
-        preview_url:
-          type: boolean
-    Viber:
-      type: object
-      description: A Viber channel message.
-      required:
-      - text
-      properties:
-        channel:
-          type: string
-          enum:
-          - viber
-          default: viber
-        sender:
-          type: string
-        text:
-          type: string
-        image_url:
-          type: string
-        button_url:
-          type: string
-        button_text:
-          type: string
-        validity:
-          type: integer
-    Omnimessage:
-      type: object
-      description: A message delivered over one or more channels. The messages array defines the fallback chain in priority order.
-      required:
-      - to
-      - messages
-      properties:
-        to:
-          type: string
-          description: Recipient phone number in international E.164 format.
-        messages:
-          type: array
-          description: Ordered list of channel-specific messages forming the fallback chain.
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/SMS'
-            - $ref: '#/components/schemas/Viber'
-            - $ref: '#/components/schemas/WhatsApp'
-        text_store:
-          type: string
-          enum:
-          - nostore
-          - plaintext
-          - sha256
     OmniMessageCreateSuccessResponse:
       type: object
       properties:
