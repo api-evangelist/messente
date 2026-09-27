@@ -140,25 +140,6 @@ paths:
           description: Contact removed from group
 components:
   schemas:
-    GroupResponseFields:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contactsCount:
-          type: integer
-        createdOn:
-          type: string
-    GroupListEnvelope:
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseFields'
     ContactUpdateFields:
       type: object
       properties:
@@ -172,25 +153,6 @@ components:
           type: string
         title:
           type: string
-    ContactResponseFields:
-      allOf:
-      - $ref: '#/components/schemas/ContactFields'
-      - type: object
-        properties:
-          scheduledDeletionDate:
-            type: string
-    ContactListEnvelope:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactResponseFields'
-    ContactEnvelope:
-      type: object
-      properties:
-        contact:
-          $ref: '#/components/schemas/ContactResponseFields'
     ContactFields:
       type: object
       required:
@@ -216,6 +178,44 @@ components:
           type: string
         custom4:
           type: string
+    GroupResponseFields:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactsCount:
+          type: integer
+        createdOn:
+          type: string
+    ContactResponseFields:
+      allOf:
+      - $ref: '#/components/schemas/ContactFields'
+      - type: object
+        properties:
+          scheduledDeletionDate:
+            type: string
+    GroupListEnvelope:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseFields'
+    ContactListEnvelope:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactResponseFields'
+    ContactEnvelope:
+      type: object
+      properties:
+        contact:
+          $ref: '#/components/schemas/ContactResponseFields'
   parameters:
     Phone:
       name: phone

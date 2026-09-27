@@ -112,11 +112,6 @@ components:
       properties:
         name:
           type: string
-    GroupEnvelope:
-      type: object
-      properties:
-        group:
-          $ref: '#/components/schemas/GroupResponseFields'
     GroupListEnvelope:
       type: object
       properties:
@@ -124,6 +119,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GroupResponseFields'
+    GroupEnvelope:
+      type: object
+      properties:
+        group:
+          $ref: '#/components/schemas/GroupResponseFields'
   parameters:
     GroupId:
       name: groupId

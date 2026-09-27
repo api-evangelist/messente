@@ -41,26 +41,6 @@ paths:
                 $ref: '#/components/schemas/SyncNumberLookupSuccess'
 components:
   schemas:
-    SyncNumberLookupSuccess:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SyncNumberLookupResult'
-    MobileNetwork:
-      type: object
-      properties:
-        mcc:
-          type: string
-        mnc:
-          type: string
-        networkName:
-          type: string
-        countryName:
-          type: string
-        countryPrefix:
-          type: string
     NumbersToInvestigate:
       type: object
       required:
@@ -89,6 +69,26 @@ components:
           type: string
         status:
           type: string
+    MobileNetwork:
+      type: object
+      properties:
+        mcc:
+          type: string
+        mnc:
+          type: string
+        networkName:
+          type: string
+        countryName:
+          type: string
+        countryPrefix:
+          type: string
+    SyncNumberLookupSuccess:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncNumberLookupResult'
   securitySchemes:
     basicAuth:
       type: http

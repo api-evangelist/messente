@@ -39,26 +39,6 @@ paths:
           description: Invalid input
 components:
   schemas:
-    BulkOmnimessage:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Omnimessage'
-    WhatsApp:
-      type: object
-      description: A WhatsApp channel message.
-      properties:
-        channel:
-          type: string
-          enum:
-          - whatsapp
-          default: whatsapp
-        sender:
-          type: string
-        text:
-          $ref: '#/components/schemas/WhatsAppText'
     Viber:
       type: object
       description: A Viber channel message.
@@ -82,6 +62,13 @@ components:
           type: string
         validity:
           type: integer
+    BulkOmnimessage:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Omnimessage'
     WhatsAppText:
       type: object
       properties:
@@ -89,30 +76,6 @@ components:
           type: string
         preview_url:
           type: boolean
-    Omnimessage:
-      type: object
-      description: A message delivered over one or more channels. The messages array defines the fallback chain in priority order.
-      required:
-      - to
-      - messages
-      properties:
-        to:
-          type: string
-          description: Recipient phone number in international E.164 format.
-        messages:
-          type: array
-          description: Ordered list of channel-specific messages forming the fallback chain.
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/SMS'
-            - $ref: '#/components/schemas/Viber'
-            - $ref: '#/components/schemas/WhatsApp'
-        text_store:
-          type: string
-          enum:
-          - nostore
-          - plaintext
-          - sha256
     SMS:
       type: object
       description: An SMS channel message.
@@ -138,6 +101,43 @@ components:
           - full
           - 'on'
           - 'off'
+    WhatsApp:
+      type: object
+      description: A WhatsApp channel message.
+      properties:
+        channel:
+          type: string
+          enum:
+          - whatsapp
+          default: whatsapp
+        sender:
+          type: string
+        text:
+          $ref: '#/components/schemas/WhatsAppText'
+    Omnimessage:
+      type: object
+      description: A message delivered over one or more channels. The messages array defines the fallback chain in priority order.
+      required:
+      - to
+      - messages
+      properties:
+        to:
+          type: string
+          description: Recipient phone number in international E.164 format.
+        messages:
+          type: array
+          description: Ordered list of channel-specific messages forming the fallback chain.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/SMS'
+            - $ref: '#/components/schemas/Viber'
+            - $ref: '#/components/schemas/WhatsApp'
+        text_store:
+          type: string
+          enum:
+          - nostore
+          - plaintext
+          - sha256
   securitySchemes:
     basicAuth:
       type: http
