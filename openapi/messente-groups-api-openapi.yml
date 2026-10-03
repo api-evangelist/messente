@@ -105,13 +105,6 @@ components:
           type: integer
         createdOn:
           type: string
-    GroupName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
     GroupListEnvelope:
       type: object
       properties:
@@ -119,6 +112,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GroupResponseFields'
+    GroupName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
     GroupEnvelope:
       type: object
       properties:
