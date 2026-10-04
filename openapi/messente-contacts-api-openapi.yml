@@ -147,18 +147,6 @@ components:
         properties:
           scheduledDeletionDate:
             type: string
-    GroupResponseFields:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contactsCount:
-          type: integer
-        createdOn:
-          type: string
     GroupListEnvelope:
       type: object
       properties:
@@ -166,13 +154,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GroupResponseFields'
-    ContactListEnvelope:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactResponseFields'
     ContactFields:
       type: object
       required:
@@ -203,6 +184,18 @@ components:
       properties:
         contact:
           $ref: '#/components/schemas/ContactResponseFields'
+    GroupResponseFields:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactsCount:
+          type: integer
+        createdOn:
+          type: string
     ContactUpdateFields:
       type: object
       properties:
@@ -216,6 +209,13 @@ components:
           type: string
         title:
           type: string
+    ContactListEnvelope:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactResponseFields'
   parameters:
     GroupId:
       name: groupId

@@ -89,13 +89,6 @@ components:
           - full
           - 'on'
           - 'off'
-    WhatsAppText:
-      type: object
-      properties:
-        body:
-          type: string
-        preview_url:
-          type: boolean
     Omnimessage:
       type: object
       description: A message delivered over one or more channels. The messages array defines the fallback chain in priority order.
@@ -120,6 +113,45 @@ components:
           - nostore
           - plaintext
           - sha256
+    OmniMessageCreateSuccessResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              channel:
+                type: string
+              message_id:
+                type: string
+              sender:
+                type: string
+        to:
+          type: string
+        omnimessage:
+          type: string
+          format: uuid
+    WhatsAppText:
+      type: object
+      properties:
+        body:
+          type: string
+        preview_url:
+          type: boolean
+    WhatsApp:
+      type: object
+      description: A WhatsApp channel message.
+      properties:
+        channel:
+          type: string
+          enum:
+          - whatsapp
+          default: whatsapp
+        sender:
+          type: string
+        text:
+          $ref: '#/components/schemas/WhatsAppText'
     Viber:
       type: object
       description: A Viber channel message.
@@ -143,38 +175,6 @@ components:
           type: string
         validity:
           type: integer
-    OmniMessageCreateSuccessResponse:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            type: object
-            properties:
-              channel:
-                type: string
-              message_id:
-                type: string
-              sender:
-                type: string
-        to:
-          type: string
-        omnimessage:
-          type: string
-          format: uuid
-    WhatsApp:
-      type: object
-      description: A WhatsApp channel message.
-      properties:
-        channel:
-          type: string
-          enum:
-          - whatsapp
-          default: whatsapp
-        sender:
-          type: string
-        text:
-          $ref: '#/components/schemas/WhatsAppText'
   securitySchemes:
     basicAuth:
       type: http

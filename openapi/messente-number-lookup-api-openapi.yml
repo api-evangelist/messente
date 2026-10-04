@@ -41,25 +41,13 @@ paths:
                 $ref: '#/components/schemas/SyncNumberLookupSuccess'
 components:
   schemas:
-    SyncNumberLookupResult:
+    SyncNumberLookupSuccess:
       type: object
       properties:
-        number:
-          type: string
-        roaming:
-          type: boolean
-        ported:
-          type: boolean
-        roamingNetwork:
-          $ref: '#/components/schemas/MobileNetwork'
-        originalNetwork:
-          $ref: '#/components/schemas/MobileNetwork'
-        currentNetwork:
-          $ref: '#/components/schemas/MobileNetwork'
-        error:
-          type: string
-        status:
-          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SyncNumberLookupResult'
     MobileNetwork:
       type: object
       properties:
@@ -82,13 +70,25 @@ components:
           type: array
           items:
             type: string
-    SyncNumberLookupSuccess:
+    SyncNumberLookupResult:
       type: object
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SyncNumberLookupResult'
+        number:
+          type: string
+        roaming:
+          type: boolean
+        ported:
+          type: boolean
+        roamingNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        originalNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        currentNetwork:
+          $ref: '#/components/schemas/MobileNetwork'
+        error:
+          type: string
+        status:
+          type: string
   securitySchemes:
     basicAuth:
       type: http
