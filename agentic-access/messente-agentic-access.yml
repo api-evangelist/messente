@@ -1,41 +1,47 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/messente-openapi.yml
+source: openapi/messente-account-balance-api-openapi.yml, openapi/messente-blacklist-api-openapi.yml,
+  openapi/messente-bulk-messaging-api-openapi.yml, openapi/messente-contacts-api-openapi.yml,
+  openapi/messente-delivery-report-api-openapi.yml, openapi/messente-groups-api-openapi.yml,
+  openapi/messente-number-lookup-api-openapi.yml, openapi/messente-number-verification-api-openapi.yml,
+  openapi/messente-omnimessage-api-openapi.yml, openapi/messente-pricing-api-openapi.yml, openapi/messente-statistics-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 28
   by_action_class:
-    acting: 17
-    connected: 11
+    connected: 12
+    acting: 16
   by_consequence:
+    read: 12
+    write: 14
     physical: 2
-    write: 15
-    read: 11
   human_in_the_loop_required: 0
 operations:
-- path: /omnimessage
-  method: post
-  operationId: sendOmnimessage
+- path: /get_balance
+  method: get
+  operationId: getAccountBalance
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /omnimessage/{omnimessageId}
-  method: delete
-  operationId: cancelScheduledMessage
+      max-ttl: 3600
+    audit: none
+- path: /phonebook/blacklist
+  method: get
+  operationId: fetchBlacklist
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /phonebook/blacklist
+  method: post
+  operationId: addToBlacklist
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -49,9 +55,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /omnimessage/{omnimessageId}/status
+- path: /phonebook/blacklist/{phone}
   method: get
-  operationId: retrieveDeliveryReport
+  operationId: isBlacklisted
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -59,6 +65,22 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /phonebook/blacklist/{phone}
+  method: delete
+  operationId: deleteFromBlacklist
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /omnimessages
   method: post
   operationId: sendBulkOmnimessage
@@ -187,6 +209,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /omnimessage/{omnimessageId}/status
+  method: get
+  operationId: retrieveDeliveryReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /phonebook/groups
   method: get
   operationId: fetchGroups
@@ -255,74 +287,16 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /phonebook/blacklist
-  method: get
-  operationId: fetchBlacklist
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /phonebook/blacklist
-  method: post
-  operationId: addToBlacklist
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /phonebook/blacklist/{phone}
-  method: get
-  operationId: isBlacklisted
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /phonebook/blacklist/{phone}
-  method: delete
-  operationId: deleteFromBlacklist
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /hlr/sync
   method: post
   operationId: fetchInfoSync
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /verify/start
   method: post
   operationId: verifyNumber
@@ -355,9 +329,27 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /statistics/reports
+- path: /omnimessage
   method: post
-  operationId: createStatisticsReport
+  operationId: sendOmnimessage
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /omnimessage/{omnimessageId}
+  method: delete
+  operationId: cancelScheduledMessage
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -391,13 +383,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /get_balance
-  method: get
-  operationId: getAccountBalance
+- path: /statistics/reports
+  method: post
+  operationId: createStatisticsReport
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
