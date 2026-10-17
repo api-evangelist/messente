@@ -70,14 +70,15 @@ paths:
         '204':
           description: Number removed from blacklist
 components:
+  parameters:
+    Phone:
+      name: phone
+      in: path
+      required: true
+      description: A phone number in international E.164 format.
+      schema:
+        type: string
   schemas:
-    NumberToBlacklist:
-      type: object
-      required:
-      - phoneNumber
-      properties:
-        phoneNumber:
-          type: string
     FetchBlacklistSuccess:
       type: object
       properties:
@@ -88,14 +89,13 @@ components:
             properties:
               phoneNumber:
                 type: string
-  parameters:
-    Phone:
-      name: phone
-      in: path
-      required: true
-      description: A phone number in international E.164 format.
-      schema:
-        type: string
+    NumberToBlacklist:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

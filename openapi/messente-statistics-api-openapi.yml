@@ -40,6 +40,13 @@ paths:
                 $ref: '#/components/schemas/StatisticsReportSuccess'
 components:
   schemas:
+    StatisticsReportSuccess:
+      type: object
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsReport'
     StatisticsReport:
       type: object
       properties:
@@ -53,13 +60,6 @@ components:
           type: integer
         failed:
           type: integer
-    StatisticsReportSuccess:
-      type: object
-      properties:
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatisticsReport'
     StatisticsReportSettings:
       type: object
       properties:

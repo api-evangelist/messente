@@ -54,13 +54,6 @@ paths:
                 $ref: '#/components/schemas/PriceInfo'
 components:
   schemas:
-    PriceInfo:
-      type: object
-      properties:
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Price'
     Price:
       type: object
       properties:
@@ -74,6 +67,13 @@ components:
           type: number
         currency:
           type: string
+    PriceInfo:
+      type: object
+      properties:
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
   securitySchemes:
     basicAuth:
       type: http

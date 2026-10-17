@@ -140,6 +140,25 @@ paths:
           description: Contact removed from group
 components:
   schemas:
+    GroupResponseFields:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactsCount:
+          type: integer
+        createdOn:
+          type: string
+    ContactListEnvelope:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactResponseFields'
     ContactResponseFields:
       allOf:
       - $ref: '#/components/schemas/ContactFields'
@@ -147,13 +166,24 @@ components:
         properties:
           scheduledDeletionDate:
             type: string
-    GroupListEnvelope:
+    ContactEnvelope:
       type: object
       properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseFields'
+        contact:
+          $ref: '#/components/schemas/ContactResponseFields'
+    ContactUpdateFields:
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        title:
+          type: string
     ContactFields:
       type: object
       required:
@@ -179,44 +209,21 @@ components:
           type: string
         custom4:
           type: string
-    ContactEnvelope:
+    GroupListEnvelope:
       type: object
       properties:
-        contact:
-          $ref: '#/components/schemas/ContactResponseFields'
-    GroupResponseFields:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contactsCount:
-          type: integer
-        createdOn:
-          type: string
-    ContactUpdateFields:
-      type: object
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        company:
-          type: string
-        title:
-          type: string
-    ContactListEnvelope:
-      type: object
-      properties:
-        contacts:
+        groups:
           type: array
           items:
-            $ref: '#/components/schemas/ContactResponseFields'
+            $ref: '#/components/schemas/GroupResponseFields'
   parameters:
+    Phone:
+      name: phone
+      in: path
+      required: true
+      description: A phone number in international E.164 format.
+      schema:
+        type: string
     GroupId:
       name: groupId
       in: path
@@ -225,13 +232,6 @@ components:
       schema:
         type: string
         format: uuid
-    Phone:
-      name: phone
-      in: path
-      required: true
-      description: A phone number in international E.164 format.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

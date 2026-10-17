@@ -92,16 +92,19 @@ paths:
         '204':
           description: Group deleted
 components:
-  parameters:
-    GroupId:
-      name: groupId
-      in: path
-      required: true
-      description: The identifier of the group.
-      schema:
-        type: string
-        format: uuid
   schemas:
+    GroupResponseFields:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactsCount:
+          type: integer
+        createdOn:
+          type: string
     GroupEnvelope:
       type: object
       properties:
@@ -121,18 +124,15 @@ components:
       properties:
         name:
           type: string
-    GroupResponseFields:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contactsCount:
-          type: integer
-        createdOn:
-          type: string
+  parameters:
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      description: The identifier of the group.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     basicAuth:
       type: http
